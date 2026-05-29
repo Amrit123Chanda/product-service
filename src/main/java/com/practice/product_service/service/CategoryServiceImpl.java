@@ -22,4 +22,15 @@ public class CategoryServiceImpl implements CategoryService{
         return savedCategoryResponse;
 
     }
+
+    @Override
+    public CategoryResponse updateCategory(CategoryRequest categoryRequest, Long id) {
+
+        Category category=categoryRepository.findCategoryById(id).orElseThrow(()->new RuntimeException("Category not found with id: "+id));
+        category.setName(categoryRequest.getName());
+        Category updatedCategory=categoryRepository.save(category);
+        CategoryResponse updatedCategoryResponse = CategoryMapper.toCategoryResponse(updatedCategory);
+
+        return updatedCategoryResponse;
+    }
 }
