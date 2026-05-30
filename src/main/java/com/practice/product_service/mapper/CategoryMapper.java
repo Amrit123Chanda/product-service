@@ -9,6 +9,7 @@ public class CategoryMapper {
     public static Category toCategory(CategoryRequest categoryRequest){
         Category category = new Category();
         category.setName(categoryRequest.getName());
+        category.setDescription(categoryRequest.getDescription());
         return category;
     }
 
@@ -16,6 +17,7 @@ public class CategoryMapper {
         CategoryResponse categoryResponse = new CategoryResponse();
         categoryResponse.setName(category.getName());
         categoryResponse.setId(category.getId());
+        categoryResponse.setDescription(category.getDescription());
         return categoryResponse;
     }
 }

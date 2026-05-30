@@ -7,4 +7,6 @@ public interface CategoryService {
     CategoryResponse createCategory(CategoryRequest categoryRequest);
 
     CategoryResponse updateCategory(CategoryRequest categoryRequest, Long id);
+
+    CategoryResponse getCategory(String categoryName);
 }
