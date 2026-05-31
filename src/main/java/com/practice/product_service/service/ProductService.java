@@ -5,4 +5,8 @@ import com.practice.product_service.dto.ProductResponse;
 
 public interface ProductService {
     ProductResponse createProduct(ProductRequest productRequest);
+
+    ProductResponse getProduct(String name);
+
+    ProductResponse updateProduct(ProductRequest productRequest, Long id);
 }
