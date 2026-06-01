@@ -4,6 +4,7 @@ import com.practice.product_service.dto.ProductRequest;
 import com.practice.product_service.dto.ProductResponse;
 import com.practice.product_service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,6 +27,12 @@ public class ProductController {
     @PatchMapping("/update/{id}")
     public ProductResponse updateProduct(@RequestBody ProductRequest productRequest, @PathVariable Long id){
         return productService.updateProduct(productRequest,id);
+    }
+
+    @GetMapping("/get/allProdutcs/{categoryId}")
+    public Page<ProductResponse> getProductListforCategoryId(@PathVariable Long categoryId,
+                                                             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
+        return productService.getProductListforCategoryId(categoryId,page,size);
     }
 
 }
