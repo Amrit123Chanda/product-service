@@ -29,7 +29,7 @@ public class ProductController {
         return productService.updateProduct(productRequest,id);
     }
 
-    @GetMapping("/get/allProdutcs/{categoryId}")
+    @GetMapping("/get/allProducts/{categoryId}")
     public Page<ProductResponse> getProductListforCategoryId(@PathVariable Long categoryId,
                                                              @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
         return productService.getProductListforCategoryId(categoryId,page,size);
