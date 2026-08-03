@@ -82,4 +82,11 @@ public class ProductServiceImpl implements ProductService {
         Page<Product> pageProducts = productRepository.findProductsforCatId(categoryId,pageable);
         return pageProducts.map((product) -> ProductMapper.toProductResponse(product));
     }
-}
+
+    @Override
+    public ProductResponse getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
+        return ProductMapper.toProductResponse(product);
+      }
+    }

@@ -19,7 +19,7 @@ public class ProductController {
         return productService.createProduct(productRequest);
     }
 
-    @GetMapping("/get/{name}")
+    @GetMapping("/getbyName/{name}")
     public ProductResponse getProduct(@PathVariable String name){
         return productService.getProduct(name);
     }
@@ -33,6 +33,11 @@ public class ProductController {
     public Page<ProductResponse> getProductListforCategoryId(@PathVariable Long categoryId,
                                                              @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
         return productService.getProductListforCategoryId(categoryId,page,size);
+    }
+
+    @GetMapping("/getbyId/{id}")
+    public ProductResponse getProductById(@PathVariable Long id){
+        return productService.getProductById(id);
     }
 
 }
