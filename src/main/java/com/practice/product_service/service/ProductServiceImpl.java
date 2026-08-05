@@ -89,4 +89,17 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
         return ProductMapper.toProductResponse(product);
       }
+
+    @Override
+    public ProductResponse reduceStock(int quantity, Long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
+        int oldQuantity = product.getStock();
+        int newQuanity  = oldQuantity - quantity;
+
+        product.setStock(newQuanity);
+        Product updatedProduct = productRepository.save(product);
+
+        ProductResponse productResponse = ProductMapper.toProductResponse(updatedProduct);
+        return productResponse;
     }
+}
